@@ -1,0 +1,117 @@
+#!/bin/bash
+#
+# This script should be called as follows
+# (only use this format if calling from udev rules, cron,
+# NetworkManager dispatcher, etc.)
+# /usr/bin/su -l YOUR_USERNAME -c 'mynotif -OPT PARAM1 PARAM2 ...'
+#
+# else
+#
+# mynotif -OPT PARAM1 PARAM2 ...
+#
+
+# Define mynotif path
+MYPATH="${HOME}/.local/mynotif"
+
+# Define config location
+CONFIG_DIR="${HOME}/.config/mynotif"
+mkdir -p "$CONFIG_DIR"
+
+# Define profile location
+PROFILE_CONFIG="${CONFIG_DIR}/profile"
+profile=$(cat "$PROFILE_CONFIG")
+
+# Import tools
+. "${MYPATH}/tools.import"
+
+if [[ "$1" == "-P" || "$1" == "-p" ]]; then
+    if [[ "$2" == "toggle" ]]; then
+        if [[ "$profile" == "do-not-disturb" ]]; then
+            echo "default" > "$PROFILE_CONFIG"
+        else
+            echo "do-not-disturb" > "$PROFILE_CONFIG"
+        fi
+    else
+        echo "$2" > "$PROFILE_CONFIG"
+    fi
+    profile=$(cat "$PROFILE_CONFIG")
+    [[ "$1" == "-P" ]] && $NOTISEND "Notifications profile" "Changed to $profile"
+    exit 0
+fi
+
+[[ "$profile" == "do-not-disturb" ]] && exit
+
+# Necessary variables for paplay and notify-send
+export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u)/bus"
+export XDG_RUNTIME_DIR="/run/user/$(id -u)"
+# On X11 you should (probably) add these:
+# DISPLAY
+# XAUTORITY
+
+# hide popups
+if [[ "$profile" == "only-sound" ]]; then
+    NH_NOTISEND="false && ${NH_NOTISEND}"
+fi
+# mute audio
+if [[ "$profile" == "only-popup" ]]; then
+    NH_PLAYER="false && ${NH_PLAYER}"
+fi
+
+# Import sounds
+. "${MYPATH}/sounds.import"
+
+case "$1" in
+    "-d")
+        if [[ "$2" == "plug" ]]; then
+            $NH_PLAYER "$device_added_sound" >/dev/null 2>&1 &
+        else
+            if [[ "$2" == "unplug" ]]; then
+                $NH_PLAYER "$device_removed_sound" >/dev/null 2>&1 &
+            else
+                exit 1
+            fi
+        fi
+        $NH_NOTISEND "Device ${2}ged" "$3 on /dev/$4" >/dev/null 2>&1 &
+        ;;
+    "-s")
+        [[ $2 == "enable" || $2 == "disable" ]] || exit 1
+        $NH_PLAYER "$message_new_instant_sound" >/dev/null 2>&1 &
+        $NH_NOTISEND "Device status changed" "$3 is ${2}d" >/dev/null 2>&1 &
+        ;;
+    "-n")
+        [[ $2 == "up" || $2 == "down" ]] || exit 1
+        $NH_PLAYER "$message_sound" >/dev/null 2>&1 &
+        $NH_NOTISEND "Network Manager changed" "$3 is $2" >/dev/null 2>&1 &
+        ;;
+    "-r")
+        $NH_PLAYER "$message_new_instant_sound" >/dev/null 2>&1 &
+        # extract info from args
+        info=$*
+        # removing first (option) and second (device) args
+        info="${info#* }"
+        info="${info#* }"
+        $NH_NOTISEND "RFKILL changed on $2" "$info" >/dev/null 2>&1 &
+        ;;
+    "-m")
+        $NH_PLAYER "$device_added_sound" >/dev/null 2>&1 &
+        # extract manufacturer and product from args
+        mobile=$*
+        # removing first (option) and second (protocol) args
+        mobile="${mobile#* }"
+        mobile="${mobile#* }"
+        $NH_NOTISEND "$mobile connected" "Using $2 protocol" >/dev/null 2>&1 &
+        ;;
+    "-g")
+        $NH_PLAYER "$message_new_instant_sound" >/dev/null 2>&1 &
+        $NH_NOTISEND "Gamma changed" "Setting $2 period" >/dev/null 2>&1 &
+        ;;
+    "-b")
+        [[ $2 == "connect" || $2 == "disconnect" ]] || exit 1
+        $NH_BTHELPER "$2" >/dev/null 2>&1 &
+        ;;
+    *)
+        echo default
+        ;;
+esac
+
+exit 0

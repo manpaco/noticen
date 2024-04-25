@@ -1,0 +1,6 @@
+NOTISEND="notify-send -t 3000"
+PLAYER="paplay"
+BTHELPER="bt-helper"
+NH_NOTISEND="nohup ${NOTISEND}"
+NH_PLAYER="nohup ${PLAYER}"
+NH_BTHELPER="nohup ${BTHELPER}"

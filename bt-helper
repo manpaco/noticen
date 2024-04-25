@@ -1,0 +1,27 @@
+#!/bin/bash
+#
+# BT notification helper
+#
+
+# Define mynotif path
+MYPATH="${HOME}/.local/mynotif"
+
+# Import tools
+. "${MYPATH}/tools.import"
+
+# Import sounds
+. "${MYPATH}/sounds.import"
+
+device=""
+if [[ $1 == "connect" ]]; then
+    while [[ -z $device && $SECONDS -le 10 ]]; do
+        sleep 3
+        device="$(bluetoothctl devices Connected)"
+    done
+    [[ -z $device ]] && exit 1
+fi
+
+$PLAYER "$dialog_warning" &
+$NOTISEND "Bluetooth device ${1}ed" "$device"
+
+exit 0
