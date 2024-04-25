@@ -1,6 +1,6 @@
 # My own version (more gain) of freedesktop sound theme
 # Original theme: https://cgit.freedesktop.org/sound-theme-freedesktop
-SOUNDS_DIR="${HOME}/.local/share/sounds/freedesktop-mod"
+SOUNDS_DIR="${HOME}/.local/share/sounds/sysound"
 
 device_added_sound="${SOUNDS_DIR}/device-added.ogg"
 device_removed_sound="${SOUNDS_DIR}/device-removed.ogg"
