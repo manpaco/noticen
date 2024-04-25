@@ -4,7 +4,7 @@
 #
 
 # Define mynotif path
-MYPATH="${HOME}/.local/mynotif"
+MYPATH="${HOME}/.local/udev-notification"
 
 # Import tools
 . "${MYPATH}/tools.import"
