@@ -10,7 +10,7 @@
 # mynotif -OPT PARAM1 PARAM2 ...
 #
 
-# Define mynotif path
+# Define noticen path
 MYPATH="${HOME}/.local/udev-notification"
 
 # Define config location
