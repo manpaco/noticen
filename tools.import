@@ -1,6 +1,6 @@
 SENDER="notify-send"
 NOTISEND="${SENDER} -t 3000"
-PLAYER="paplay"
+PLAYER="pw-play"
 BTHELPER="bt-helper"
 NH_NOTISEND="nohup ${NOTISEND}"
 NH_PLAYER="nohup ${PLAYER}"
