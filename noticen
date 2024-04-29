@@ -11,7 +11,7 @@
 #
 
 # Define noticen path
-MYPATH="${HOME}/.local/udev-notification"
+MYPATH="${HOME}/.local/noticen"
 
 # Necessary variables for paplay and notify-send
 export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u)/bus"
@@ -71,7 +71,7 @@ case "$1" in
         [[ $2 == "connect" || $2 == "disconnect" ]] || exit 1
         $NH_BTHELPER "$2" >/dev/null 2>&1 &
         ;;
-    "-g")
+    "--gamma")
         $PLAYER "$message_new_instant_sound" &
         $NOTISEND "Gamma changed" "Setting $2 period"
         ;;
