@@ -76,13 +76,17 @@ case "$1" in
         $NOTISEND "Gamma changed" "Setting $2 period"
         ;;
     "--record")
-        if [[ "$2" == "stop" ]]; then
+        [[ "$2" == "sound" ]] && RECTYPE="${2^}"
+        [[ "$2" == "screen" ]] && RECTYPE="${2^}"
+        if [[ "$3" == "stop" ]]; then
             $PLAYER "$service_logout_sound" &
-            $NOTISEND "Screen recorder" "Recording stopped"
+            $NOTISEND "${RECTYPE} recorder" "Recording stopped"
+            exit
         fi
-        if [[ "$2" == "start" ]]; then
+        if [[ "$3" == "start" ]]; then
             $PLAYER "$service_login_sound" &
-            $SENDER -t "${3}000" "Screen recorder" "Recording starts in ${3} seconds"
+            $SENDER -t "${4}000" "${RECTYPE} recorder" "Recording starts in ${4} seconds"
+            exit
         fi
         ;;
     "--volume")
