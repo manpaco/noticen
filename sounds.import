@@ -3,6 +3,8 @@
 SYSOUNDS="${HOME}/.local/share/sounds/sysound"
 FDTSOUNDS="${HOME}/.local/share/sounds/freedesktop-mod"
 
+audio_volume_sound="${SYSOUNDS}/audio-volume-change.ogg"
+camera_shutter_sound="${SYSOUNDS}/camera-shutter.ogg"
 device_added_sound="${SYSOUNDS}/device-added.ogg"
 device_removed_sound="${SYSOUNDS}/device-removed.ogg"
 message_new_instant_sound="${SYSOUNDS}/message-new-instant.ogg"
