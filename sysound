@@ -1,9 +1,13 @@
 #!/bin/bash
 
-SYSOUNDS="${HOME}/.local/share/sounds/sysound"
+# Define noticen path
+MYPATH="${HOME}/.local/udev-notification"
+
+# Import sounds
+. "${MYPATH}/sounds.import"
 
 turn_on () {
-    ln -fs "${HOME}/.local/share/sounds/freedesktop-mod" "${SYSOUNDS}"
+    ln -fs "${FDTSOUNDS}" "${SYSOUNDS}"
     notify-send -t 3000 "System sounds" "Turned ON"
 }
 
