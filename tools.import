@@ -1,4 +1,5 @@
-NOTISEND="notify-send -t 3000"
+SENDER="notify-send"
+NOTISEND="${SENDER} -t 3000"
 PLAYER="paplay"
 BTHELPER="bt-helper"
 NH_NOTISEND="nohup ${NOTISEND}"
