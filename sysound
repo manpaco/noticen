@@ -3,17 +3,20 @@
 # Define noticen path
 MYPATH="${HOME}/.local/noticen"
 
+# Import tools
+. "${MYPATH}/tools.import"
+
 # Import sounds
 . "${MYPATH}/sounds.import"
 
 turn_on () {
     ln -fs -T "${FDTSOUNDS}" "${SYSOUNDS}"
-    notify-send -t 3000 "System sounds" "Turned ON"
+    $NOTISEND "System sounds" "Turned ON"
 }
 
 turn_off () {
     rm "$SYSOUNDS"
-    notify-send -t 3000 "System sounds" "Turned OFF"
+    $NOTISEND "System sounds" "Turned OFF"
 }
 
 is_on () {
