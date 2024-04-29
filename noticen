@@ -71,6 +71,20 @@ case "$1" in
         [[ $2 == "connect" || $2 == "disconnect" ]] || exit 1
         $NH_BTHELPER "$2" >/dev/null 2>&1 &
         ;;
+    "-g")
+        $PLAYER "$message_new_instant_sound" &
+        $NOTISEND "Gamma changed" "Setting $2 period"
+        ;;
+    "--record")
+        if [[ "$2" == "stop" ]]; then
+            $PLAYER "$service_logout_sound" &
+            $NOTISEND "Screen recorder" "Recording stopped"
+        fi
+        if [[ "$2" == "start" ]]; then
+            $PLAYER "$service_login_sound" &
+            $SENDER -t "${3}000" "Screen recorder" "Recording starts in ${3} seconds"
+        fi
+        ;;
     *)
         echo default
         ;;
