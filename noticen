@@ -13,15 +13,15 @@
 # Define noticen path
 MYPATH="${HOME}/.local/udev-notification"
 
-# Import tools
-. "${MYPATH}/tools.import"
-
 # Necessary variables for paplay and notify-send
 export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u)/bus"
 export XDG_RUNTIME_DIR="/run/user/$(id -u)"
 # On X11 you should (probably) add these:
 # DISPLAY
 # XAUTORITY
+
+# Import tools
+. "${MYPATH}/tools.import"
 
 # Import sounds
 . "${MYPATH}/sounds.import"
