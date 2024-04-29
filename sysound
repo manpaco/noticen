@@ -24,16 +24,16 @@ is_on () {
 }
 
 case "$1" in
-    "toggle")
+    "--toggle")
         if is_on; then
             turn_off
         else
             turn_on
         fi
     ;;
-    "on") ! is_on && turn_on
+    "--on") ! is_on && turn_on
     ;;
-    "off") is_on && turn_off
+    "--off") is_on && turn_off
     ;;
 esac
 
