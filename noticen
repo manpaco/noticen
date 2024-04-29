@@ -85,6 +85,12 @@ case "$1" in
             $SENDER -t "${3}000" "Screen recorder" "Recording starts in ${3} seconds"
         fi
         ;;
+    "--volume")
+        $PLAYER "$audio_volume_sound" &
+        ;;
+    "--shutter")
+        $PLAYER "$camera_shutter_sound" &
+        ;;
     *)
         echo default
         ;;
