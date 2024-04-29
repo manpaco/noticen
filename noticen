@@ -13,27 +13,8 @@
 # Define noticen path
 MYPATH="${HOME}/.local/udev-notification"
 
-# Define config location
-CONFIG_DIR="${HOME}/.config/udev-notification"
-mkdir -p "$CONFIG_DIR"
-# Define profile location
-PROFILE_CONFIG="${CONFIG_DIR}/profile"
-touch "$PROFILE_CONFIG"
-
-profile=$(cat "$PROFILE_CONFIG")
-
 # Import tools
 . "${MYPATH}/tools.import"
-
-if [[ "$1" == "-P" || "$1" == "-p" ]]; then
-    [[ $2 == "enabled" || $2 == "disabled" ]] || exit 1
-    echo "$2" > "$PROFILE_CONFIG"
-    profile="$2"
-    [[ "$1" == "-P" ]] && $NOTISEND "Notifications profile" "Changed to $profile"
-    exit 0
-fi
-
-[[ "$profile" == "enabled" ]] || exit
 
 # Necessary variables for paplay and notify-send
 export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u)/bus"
