@@ -1,0 +1,32 @@
+#!/bin/bash
+
+SYSOUNDS="${HOME}/.local/share/sounds/sysound"
+
+turn_on () {
+    ln -fs "${HOME}/.local/share/sounds/freedesktop-mod" "${SYSOUNDS}"
+    notify-send -t 3000 "System sounds" "Turned ON"
+}
+
+turn_off () {
+    rm "$SYSOUNDS"
+    notify-send -t 3000 "System sounds" "Turned OFF"
+}
+
+is_on () {
+    [[ -e $SYSOUNDS ]]
+}
+
+case "$1" in
+    "toggle")
+        if is_on; then
+            turn_off
+        else
+            turn_on
+        fi
+    ;;
+    "on") ! is_on && turn_on
+    ;;
+    "off") is_on && turn_off
+    ;;
+esac
+
