@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # Define noticen path
-MYPATH="${HOME}/.local/udev-notification"
+MYPATH="${HOME}/.local/noticen"
 
 # Import sounds
 . "${MYPATH}/sounds.import"
 
 turn_on () {
-    ln -fs "${FDTSOUNDS}" "${SYSOUNDS}"
+    ln -fs -T "${FDTSOUNDS}" "${SYSOUNDS}"
     notify-send -t 3000 "System sounds" "Turned ON"
 }
 
