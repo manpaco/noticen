@@ -1,7 +1,5 @@
 SENDER="notify-send"
 NOTISEND="${SENDER} -t 3000"
 PLAYER="pw-play"
-BTHELPER="bt-helper"
 NH_NOTISEND="nohup ${NOTISEND}"
 NH_PLAYER="nohup ${PLAYER}"
-NH_BTHELPER="nohup ${BTHELPER}"
