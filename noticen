@@ -95,6 +95,9 @@ case "$1" in
     "--shutter")
         $PLAYER "$camera_shutter_sound" &
         ;;
+    "--sysound")
+        $NOTISEND "System sounds" "Turned $2"
+        ;;
     *)
         echo default
         ;;
