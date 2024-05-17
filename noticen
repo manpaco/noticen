@@ -13,7 +13,16 @@
 # Define noticen path
 MYPATH="${HOME}/.local/noticen"
 
-# Necessary variables for paplay and notify-send
+if [[ $1 == "--status" ]]; then
+    echo "$2" > "${MYPATH}/status"
+    exit
+fi
+
+STATUS="$(cat "${MYPATH}/status")"
+
+[[ $STATUS == "enable" ]] || exit
+
+# Necessary variables for playback and popups
 export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u)/bus"
 export XDG_RUNTIME_DIR="/run/user/$(id -u)"
 # On X11 you should (probably) add these:
