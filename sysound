@@ -6,14 +6,16 @@ MYPATH="${HOME}/.local/noticen"
 # Import sounds
 . "${MYPATH}/sounds.import"
 
+hide_noticen="$2"
+
 turn_on () {
     ln -fs -T "${FDTSOUNDS}" "${SYSOUNDS}"
-    noticen --sysound on
+    [[ $hide_noticen == "hide" ]] || noticen --sysound on
 }
 
 turn_off () {
     rm "$SYSOUNDS"
-    noticen --sysound off
+    [[ $hide_noticen == "hide" ]] || noticen --sysound off
 }
 
 is_on () {
