@@ -47,8 +47,9 @@ In this case, when `noticen` is executed on volume change or screenshot only rep
 
 ## Troubleshooting
 
-If you experience delayed playback (silence in the first milliseconds of the notification sound), you can configure pipewire with the following file (place it in `$HOME/.config/wireplumber/wireplumber.conf.d`):
+If you experience delayed playback (silence in the first milliseconds of the notification sound), you can configure pipewire with the following file (place it in `$HOME/.config/wireplumber/wireplumber.conf.d` directory):
 
+    # 51-session-suspend.conf
     # ALSA suspend: node property override
     monitor.alsa.rules = [
       {
