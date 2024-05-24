@@ -8,6 +8,14 @@ Replace the `FDTSOUNDS` variable inside [sounds.import](sounds.import) file. Als
 
 If you place the project on a directory other than `$HOME/.local/noticen`, then change the `MYPATH` variable on [noticen](noticen), [sysound](sysound), and [bt-helper](bt-helper).
 
+## sysound
+
+Internally it works with a symlink to real sounds (stored in `FDTSOUNDS`). When you turn off sounds, deletes the link. When you turn on sounds, creates the link.
+
+## bt-helper
+
+Makes queries to `bluetoothctl` for 10 seconds (max) until it finds a connected device. If it finds any, it shows the notification.
+
 ## Udev rules
 
 Always remember to call the script as follows:
