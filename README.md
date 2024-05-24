@@ -65,3 +65,5 @@ If you experience delayed playback (silence in the first milliseconds of the not
         }
       }
     ]
+
+This configuration prevents the `alsa_output.*` device from suspending after a few seconds of inactivity.
