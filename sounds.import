@@ -1,7 +1,7 @@
 # My own version (more gain) of freedesktop sound theme
 # Original theme: https://cgit.freedesktop.org/sound-theme-freedesktop
 SYSOUNDS="${HOME}/.local/share/sounds/sysound"
-FDTSOUNDS="${HOME}/.local/share/sounds/freedesktop-mod"
+FDTSOUNDS="${HOME}/.local/share/sounds/freedesktop-mod" # <== Edit THIS
 
 audio_volume_sound="${SYSOUNDS}/audio-volume-change.ogg"
 camera_shutter_sound="${SYSOUNDS}/camera-shutter.ogg"
