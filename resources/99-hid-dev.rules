@@ -1,0 +1,2 @@
+KERNEL=="hiddev*", SUBSYSTEMS=="usb", ACTION=="add", RUN+="/usr/bin/su -l youruser -c 'noticen -d plug hid $name'"
+KERNEL=="hiddev*", SUBSYSTEMS=="usb", ACTION=="remove", RUN+="/usr/bin/su -l youruser -c 'noticen -d unplug hid $name'"

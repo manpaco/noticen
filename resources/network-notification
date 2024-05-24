@@ -1,0 +1,4 @@
+#!/bin/bash
+
+[[ $2 == "up" || $2 == "down" ]] || exit
+/usr/bin/su -l youruser -c "noticen -n $2 $1"

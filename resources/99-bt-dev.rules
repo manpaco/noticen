@@ -1,0 +1,4 @@
+KERNEL=="hci?", SUBSYSTEM=="bluetooth", ACTION=="add", RUN+="/usr/bin/su -l youruser -c 'noticen -s enable bluetooth'"
+KERNEL=="hci?", SUBSYSTEM=="bluetooth", ACTION=="remove", RUN+="/usr/bin/su -l youruser -c 'noticen -s disable bluetooth'"
+KERNEL=="hci?:*", SUBSYSTEM=="bluetooth", ACTION=="add", RUN+="/usr/bin/su -l youruser -c 'noticen -b connect'"
+KERNEL=="hci?:*", SUBSYSTEM=="bluetooth", ACTION=="remove", RUN+="/usr/bin/su -l youruser -c 'noticen -b disconnect'"

@@ -1,0 +1,16 @@
+# Voume control
+bindsym --no-repeat XF86AudioRaiseVolume exec wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+ && noticen --volume
+bindsym --no-repeat XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && noticen --volume
+bindsym --no-repeat XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && noticen --volume
+
+# Save screenshots in $XDG_PICTURES_DIR
+bindsym --no-repeat Print exec /usr/share/sway-contrib/grimshot --notify save area && noticen --shutter
+bindsym --no-repeat Shift+Print exec /usr/share/sway-contrib/grimshot --notify save output && noticen --shutter
+bindsym --no-repeat Control+Shift+Print exec screenrec --toggle
+bindsym --no-repeat Control+Alt+Print exec soundrec --toggle
+
+# Toggle gammastep
+bindsym --no-repeat $mod+F4 exec pkill -USR1 gammastep
+
+# Toggle system sounds
+bindsym --no-repeat $mod+F10 exec sysound --toggle

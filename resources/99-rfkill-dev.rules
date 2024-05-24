@@ -1,0 +1,2 @@
+KERNEL=="rfkill*", SUBSYSTEM=="rfkill", ACTION=="change", ATTR{type}=="bluetooth", RUN+="/usr/bin/su -l youruser -c 'noticen -r bluetooth hard-blocked=$attr{hard}\\nsoft-blocked=$attr{soft}'"
+KERNEL=="rfkill*", SUBSYSTEM=="rfkill", ACTION=="change", ATTR{type}=="wlan", RUN+="/usr/bin/su -l youruser -c 'noticen -r wlan hard-blocked=$attr{hard}\\nsoft-blocked=$attr{soft}'"
