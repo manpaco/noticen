@@ -1,10 +1,12 @@
 # noticen
 
-I made this project to have control of notification sounds in one place.
-
-You can also add more types of notifications in the "switch/case" of the main script.
+I made this project to have control of notification sounds and popups in one place. You can also add more types of notifications in the "switch/case" of the main script.
 
 In this project are several files in [resources](/resources) that you can take as an example.
+
+Replace the `FDTSOUNDS` variable inside [sounds.import](sounds.import) file. Also configure your sound player and notification sender on [tools.import](tools.import) file.
+
+If you place the project on a directory other than `$HOME/.local/noticen`, then change the `MYPATH` variable on [noticen](noticen), [sysound](sysound), and [bt-helper](bt-helper).
 
 ## Udev rules
 
