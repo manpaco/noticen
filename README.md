@@ -25,7 +25,7 @@ Always remember to call the script as follows:
 
 Use the files named like '99-*.rules' inside [resources](/resources).
 
-## Network manager dispatcher
+## Network Manager dispatcher
 
 First enable the dispatcher service with systemd, and then place [network-notification](/resources/network-notification) file on `/etc/NetworkManager/dispatcher.d` directory.
 
@@ -42,3 +42,25 @@ You can use the [clirecorder](https://github.com/manpaco/tools/blob/main/clireco
 ## Keymaps
 
 Copy the content of [sway-keymaps](/resources/sway-keymaps) to sway config file, `$HOME/.config/sway`. Modify as necessary.
+
+In this case, when `noticen` is executed on volume change or screenshot only reproduce sound (pop and shutter, respectively). Popups on screenshot are sent by `grimshot` (that's why the `--notify` appears).
+
+## Troubleshooting
+
+If you experience delayed playback (silence in the first milliseconds of the notification sound), you can configure pipewire with the following file (place it in `$HOME/.config/wireplumber/wireplumber.conf.d`):
+
+    # ALSA suspend: node property override
+    monitor.alsa.rules = [
+      {
+      matches = [
+        {
+        node.name = "~alsa_output.pci.*"
+        }
+      ]
+        actions = {
+          update-props = {
+            session.suspend-timeout-seconds = 0
+          }
+        }
+      }
+    ]
