@@ -21,7 +21,8 @@ Makes queries to `bluetoothctl` for 10 seconds (max) until it finds a connected 
 Always remember to call the script as follows:
 
     /bin/su -l youruser '/path/to/noticen -x y'
-    /bin/su -l youruser 'noticen -x y' # if noticen is on PATH
+    # or if noticen is on PATH:
+    /bin/su -l youruser 'noticen -x y'
 
 Use the files named like '99-*.rules' inside [resources](/resources).
 
