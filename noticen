@@ -3,11 +3,11 @@
 # This script should be called as follows
 # (only use this format if calling from udev rules, cron,
 # NetworkManager dispatcher, etc.)
-# /usr/bin/su -l YOUR_USERNAME -c 'mynotif -OPT PARAM1 PARAM2 ...'
+# /usr/bin/su -l YOUR_USERNAME -c 'noticen -OPT PARAM1 PARAM2 ...'
 #
 # else
 #
-# mynotif -OPT PARAM1 PARAM2 ...
+# noticen -OPT PARAM1 PARAM2 ...
 #
 
 # Define noticen path
