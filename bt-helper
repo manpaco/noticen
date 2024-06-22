@@ -4,7 +4,7 @@
 #
 
 # Define mynotif path
-MYPATH="${HOME}/.local/noticen"
+MYPATH="${HOME:?Invalid HOME environment variable}/.local/noticen"
 
 # Import tools
 . "${MYPATH}/tools.import"
