@@ -37,14 +37,11 @@ export XDG_RUNTIME_DIR="/run/user/$(id -u)"
 
 case "$1" in
     "-d")
+        [[ $2 == "plug" || $2 == "unplug" ]] || exit 1
         if [[ "$2" == "plug" ]]; then
             $NH_PLAYER "$device_added_sound" >/dev/null 2>&1 &
         else
-            if [[ "$2" == "unplug" ]]; then
-                $NH_PLAYER "$device_removed_sound" >/dev/null 2>&1 &
-            else
-                exit 1
-            fi
+            $NH_PLAYER "$device_removed_sound" >/dev/null 2>&1 &
         fi
         $NH_NOTISEND "Device ${2}ged" "$3 on /dev/$4" >/dev/null 2>&1 &
         ;;
