@@ -94,15 +94,13 @@ case "$1" in
     "--record")
         [[ "$2" == "sound" ]] && RECTYPE="${2^}"
         [[ "$2" == "screen" ]] && RECTYPE="${2^}"
+        [[ $3 == "start" || $3 == "stop" ]] || exit 1
         if [[ "$3" == "stop" ]]; then
             $PLAYER "$service_logout_sound" &
             $NOTISEND "${RECTYPE} recorder" "Recording stopped"
-            exit
-        fi
-        if [[ "$3" == "start" ]]; then
+        else
             $PLAYER "$service_login_sound" &
             $SENDER -t "${4}000" "${RECTYPE} recorder" "Recording starts in ${4} seconds"
-            exit
         fi
         ;;
     "--volume")
