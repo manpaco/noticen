@@ -6,8 +6,8 @@ bindsym --no-repeat XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggl
 # Save screenshots in $XDG_PICTURES_DIR
 bindsym --no-repeat Print exec /usr/share/sway-contrib/grimshot --notify save area && noticen --shutter
 bindsym --no-repeat Shift+Print exec /usr/share/sway-contrib/grimshot --notify save output && noticen --shutter
-bindsym --no-repeat Control+Shift+Print exec screenrec --toggle
-bindsym --no-repeat Control+Alt+Print exec soundrec --toggle
+bindsym --no-repeat Control+Shift+Print exec clirecorder screen --toggle
+bindsym --no-repeat Control+Alt+Print exec clirecorder sound --toggle
 
 # Toggle gammastep
 bindsym --no-repeat $mod+F4 exec pkill -USR1 gammastep
