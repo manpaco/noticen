@@ -80,6 +80,16 @@ case "$1" in
         [[ $2 == "connect" || $2 == "disconnect" ]] || exit 1
         nohup "${MYPATH}/bt-helper" "$2" >/dev/null 2>&1 &
         ;;
+    "-p")
+        [[ $2 == "online" || $2 == "offline" ]] || exit 1
+        if [[ "$2" == "online" ]]; then
+            $NH_PLAYER "$device_added_sound" >/dev/null 2>&1 &
+            $NH_NOTISEND "AC connected" "Charging..." >/dev/null 2>&1 &
+        else
+            $NH_PLAYER "$device_removed_sound" >/dev/null 2>&1 &
+            $NH_NOTISEND "Running on battery" "Discharging..." >/dev/null 2>&1 &
+        fi
+        ;;
     "--gamma")
         $PLAYER "$message_new_instant_sound" &
         $NOTISEND "Gamma changed" "Setting $2 period"
